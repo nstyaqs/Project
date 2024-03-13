@@ -4,6 +4,7 @@ public class project{
         String[] numbers = input.split(" ");
 
         String[] binaryNumbers = toBin(numbers);
+        bubbleSort(binaryNumbers);
 
     }
 
@@ -44,5 +45,19 @@ public class project{
             binNumbers[i] = result.reverse().toString();
         }
         return binNumbers;
+    }
+
+    public static String[] bubbleSort(String[] arr){
+        int n = arr.length;
+        for(int i=0; i< n-1; i++){
+            for(int j =0; j < n-i-1; j++){
+                if (arr[i].compareTo(arr[j])>0) {
+                    String temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1]= temp;
+                }
+            }
+        }
+        return arr;
     }
 }

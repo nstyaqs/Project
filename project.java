@@ -4,7 +4,8 @@ public class project{
         String[] numbers = input.split(" ");
 
         String[] binaryNumbers = toBin(numbers);
-        bubbleSort(binaryNumbers);
+
+        System.out.println(Median(bubbleSort(binaryNumbers)));
 
     }
 
@@ -77,5 +78,19 @@ public class project{
             decimal += digit*Math.pow(2, n-i-1);
         }
         return decimal *sign;
+    }
+
+    public static double Median(String[] arr){
+        if (arr.length %2 == 0) {
+            int mid1 = arr.length/2;
+            int mid2 = mid1 -1;
+            double num1 = binToDec(arr[mid1]);
+            double num2 = binToDec(arr[mid2]);
+
+            return (num1+ num2)/2;
+        }else{
+            int mid = arr.length/2;
+            return binToDec(arr[mid]);
+        }
     }
 }

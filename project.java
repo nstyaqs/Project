@@ -60,4 +60,22 @@ public class project{
         }
         return arr;
     }
+
+    public static int binToDec(String binNum){
+        int decimal = 0;
+        int n = binNum.length();
+        int sign =1;
+
+        if (binNum.charAt(0)== '-') {
+            sign = -1;
+            binNum = binNum.substring(1);
+            n--;
+        }
+
+        for (int i=0; i<n; i++){
+            int digit = binNum.charAt(i)- '0';
+            decimal += digit*Math.pow(2, n-i-1);
+        }
+        return decimal *sign;
+    }
 }

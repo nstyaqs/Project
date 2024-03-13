@@ -6,6 +6,7 @@ public class project{
         String[] binaryNumbers = toBin(numbers);
 
         System.out.println(Median(bubbleSort(binaryNumbers)));
+        System.out.println(Average(bubbleSort(binaryNumbers)));
 
     }
 
@@ -91,6 +92,21 @@ public class project{
         }else{
             int mid = arr.length/2;
             return binToDec(arr[mid]);
+        }
+    }
+
+    public static double Average(String[] numbers){
+        int sum =0;
+        int count =0;
+        for(String num: numbers){
+            int decNum = binToDec(num);
+            sum+= decNum;
+            count++;
+        }
+        if (count == 0) {
+            return 0;
+        } else{
+            return (double) sum/count;
         }
     }
 }

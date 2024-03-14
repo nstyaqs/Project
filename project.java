@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class project{
     public static void main(String[] args) {
         String input = "2 10 0";
@@ -7,6 +9,8 @@ public class project{
 
         System.out.println(Median(bubbleSort(binaryNumbers)));
         System.out.println(Average(bubbleSort(binaryNumbers)));
+
+        System.out.println(Arrays.toString(bubbleSort(binaryNumbers)));
 
     }
 
@@ -53,7 +57,7 @@ public class project{
         int n = arr.length;
         for(int i=0; i< n-1; i++){
             for(int j =0; j < n-i-1; j++){
-                if (arr[i].compareTo(arr[j])>0) {
+                if (binToDec(arr[j]) > binToDec(arr[j+1])) {      ///arr[j].compareTo(arr[j+1]) > 0    //binToDeс(arr[j]) > binToDec(arr[j+1])
                     String temp = arr[j];
                     arr[j] = arr[j+1];
                     arr[j+1]= temp;

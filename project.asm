@@ -7,6 +7,7 @@
     buffer db 255 dup (?)  
     oneChar db ?           
     newline db 13, 10, '$' 
+    average dw ?
 .code
 start: 
     mov ax, @data
@@ -72,6 +73,25 @@ next_step:
     loop inner_loop
     pop cx
     loop outer_loop
-    
+
+find_average:
+    mov ax, count       
+    xor dx, dx          
+    mov bx, ax          
+    mov si, offset array 
+    mov cx, ax          
+    xor ax, ax          
+average_loop:
+    add ax, [si]        
+    add si, 2           
+    loop average_loop   
+
+    div bx              
+    mov average, ax  
+average_print:
+    mov dx, offset average
+    mov ah, 09h
+    int 21h
+       
 
 end start

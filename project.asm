@@ -55,6 +55,23 @@ end_of_line:
     jmp read_loop
 
 end_read:
+ ; bubble sort
+    mov cx, count
+    dec cx
+outer_loop:
+    push cx
+    lea si, array
+inner_loop:
+    mov ax, [si]
+    cmp ax, [si+2]
+    jl next_step
+    xchg [si+2], ax
+    mov [si], ax
+next_step:
+    add si, 2
+    loop inner_loop
+    pop cx
+    loop outer_loop
     
 
 end start

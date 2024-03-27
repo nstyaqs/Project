@@ -8,6 +8,7 @@
     oneChar db ?           
     newline db 13, 10, '$' 
     average dw ?
+    median dw ?
 .code
 start: 
     mov ax, @data
@@ -92,6 +93,30 @@ average_print:
     mov dx, offset average
     mov ah, 09h
     int 21h
-       
+
+find_median:
+    mov cx, count
+    shr cx, 1  
+    jnc even_count  
+    mov si, cx  
+    shl si, 1
+    lea si, array[si]
+    mov ax, [si]
+    mov median, ax
+    jmp median_print
+even_count:
+    mov si, cx
+    shl si, 1
+    mov ax, [si]  
+    add si, 2
+    add ax, [si]
+    cwd
+    div cx
+    mov median, ax
+
+median_print:
+    mov dx, offset median
+    mov ah, 09h
+    int 21h     
 
 end start

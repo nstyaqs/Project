@@ -58,23 +58,18 @@ next_step:
     ret
 
 find_average:
-    mov ax, count       
+    xor ax, ax       
     xor dx, dx          
-    mov bx, ax          
-    mov si, offset array 
-    mov cx, ax          
-    xor ax, ax          
+    mov cx, [count]          
+    mov si, array          
 average_loop:
     add ax, [si]        
     add si, 2           
     loop average_loop   
 
-    div bx              
-    mov average, ax  
-average_print:
-    mov dx, offset average
-    mov ah, 09h
-    int 21h
+    div cx              
+    mov [average], ax  
+    ret
 
 find_median:
     mov cx, count

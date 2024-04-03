@@ -32,6 +32,14 @@ parse_loop:
 end_read:
    ret
 
+negative:
+   neg ax
+   add ax, 1
+   mov [si], ax
+   add si, 2
+   inc word [count]
+   loop parse_loop
+
  ; bubble sort
     mov cx, count
     dec cx

@@ -17,37 +17,21 @@ read_loop:
     mov cx, 1000
     mov si, array
 parse_loop:
-    cmp byte ptr [si], 0
-    je end_of_line
+   call read_loop
+   test ax, ax
+   jz end_read
 
-    mov al, [si]
-    cmp al, '-'
-    je negative
-    cmp al, '0'
-    jl skip_char
-    cmp al, '9'
-    jg skip_char  
-    inc cx
-    jmp continue
+   test ax, 8000h
+   jnz negative
 
-negative:
-    inc si
-    jmp parse_loop
-
-continue:
-    inc si
-    jmp parse_loop
-
-skip_char:
-    inc si
-    loop parse_loop
-    jmp read_loop
-
-end_of_line:
-    add count, cx
-    jmp read_loop
+   mov [si], ax
+   add si, 2
+   inc word [count]
+   loop parse_loop
 
 end_read:
+   ret
+
  ; bubble sort
     mov cx, count
     dec cx

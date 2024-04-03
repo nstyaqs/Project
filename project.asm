@@ -4,8 +4,7 @@
 .data
     array dw 10000 dup (?)
     count dw 0
-    buffer db 255 dup (?)  
-    oneChar db ?           
+    buffer db 255 dup (?)         
     newline db 13, 10, '$' 
     average dw ?
     median dw ?
@@ -15,16 +14,8 @@ start:
     mov ds, ax
 
 read_loop:
-
-    mov ah, 0Ah
-    mov dx, offset buffer
-    int 21h
-
-    cmp buffer[1], 1Bh
-    je end_read
-
-    lea si, buffer+2
-    mov cx, 0
+    mov cx, 1000
+    mov si, array
 parse_loop:
     cmp byte ptr [si], 0
     je end_of_line

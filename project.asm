@@ -72,15 +72,15 @@ average_loop:
     ret
 
 find_median:
-    mov cx, count
+    mov cx, [count]
     shr cx, 1  
     jnc even_count  
     mov si, cx  
     shl si, 1
     lea si, array[si]
     mov ax, [si]
-    mov median, ax
-    jmp median_print
+    mov [median], ax
+    ret
 even_count:
     mov si, cx
     shl si, 1
@@ -89,12 +89,8 @@ even_count:
     add ax, [si]
     cwd
     div cx
-    mov median, ax
-
-median_print:
-    mov dx, offset median
-    mov ah, 09h
-    int 21h     
+    mov [median], ax
+    ret
 
 
     mov ax, 4C00h

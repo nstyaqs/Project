@@ -40,7 +40,7 @@ negative:
    inc word [count]
    loop parse_loop
 
-bubble sort:
+bubble_sort:
     mov cx, [count]
     dec cx
 outer_loop:
@@ -90,6 +90,32 @@ even_count:
     cwd
     div cx
     mov [median], ax
+    ret
+
+print_results:
+    mov ax, [average]
+    call print_word
+
+    mov ax, [median]
+    call print_word
+    ret
+print_word:
+    mov cx, 10
+    mov bx, ax
+    xor dx, dx
+    mov si, offset newline +5+1
+convert_loop:
+    xor dx, dx
+    div cx
+    add dl, '0'
+    dec si
+    mov [si], dl
+    test bx, bx
+    jnz convert_loop
+print_dec_num:
+    mov dx, si
+    mov ah, 09h
+    int 21h
     ret
 
 

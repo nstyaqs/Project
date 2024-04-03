@@ -40,12 +40,11 @@ negative:
    inc word [count]
    loop parse_loop
 
- ; bubble sort
-    mov cx, count
+bubble sort:
+    mov cx, [count]
     dec cx
 outer_loop:
-    push cx
-    lea si, array
+    mov si, array
 inner_loop:
     mov ax, [si]
     cmp ax, [si+2]
@@ -55,8 +54,8 @@ inner_loop:
 next_step:
     add si, 2
     loop inner_loop
-    pop cx
     loop outer_loop
+    ret
 
 find_average:
     mov ax, count       

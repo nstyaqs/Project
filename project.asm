@@ -126,14 +126,14 @@ print_word:
     mov bx, ax
     xor dx, dx
     mov si, offset newline +5+1
-convert_loop:
+convert_loop2:
     xor dx, dx
     div cx
     add dl, '0'
     dec si
     mov [si], dl
     test bx, bx
-    jnz convert_loop
+    jnz convert_loop2
 print_dec_num:
     mov dx, si
     mov ah, 09h

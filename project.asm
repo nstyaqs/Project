@@ -40,6 +40,28 @@ negative:
    inc word [count]
    loop parse_loop
 
+convert_to_binary:
+    mov cx, [count]         
+    mov si, array           
+convert_loop:
+    mov ax, [si]           
+    mov bx, ax              
+binary_conversion_loop:
+    shr ax, 1               
+    jc set_bit              
+    and bx, 0FFFEh          
+    jmp check_loop_end      
+
+set_bit:
+    or bx, 1                
+check_loop_end:
+    test ax, ax             
+    jnz binary_conversion_loop  
+    mov [si], bx            
+    add si, 2               
+    loop convert_loop       
+    ret
+
 bubble_sort:
     mov cx, [count]
     dec cx

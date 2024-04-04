@@ -13,6 +13,13 @@ start:
     mov ax, @data
     mov ds, ax
 
+    call read_loop
+    call convert_to_binary
+    call bubble_sort
+    call find_average
+    call find_median
+    call print_results
+
 read_loop:
     mov cx, 1000
     mov si, array
